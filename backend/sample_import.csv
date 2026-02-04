@@ -1,0 +1,4 @@
+patient_first_name,patient_last_name,patient_dob,claim_number,service_date,amount,status
+Alice,Williams,1992-05-10,CLM-100,2025-01-10,200.00,pending
+Bob,Brown,1988-12-01,CLM-101,2025-01-12,350.00,paid
+Alice,Williams,1992-05-10,CLM-102,2025-01-15,175.00,denied
