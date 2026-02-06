@@ -1,16 +1,84 @@
-# React + Vite
+# Claims Management Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React frontend for the Claims Management Challenge.
+Provides authentication, claims listing, CSV export, and CSV import UI.
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- React 19 (Vite)
+- Ant Design
+- Axios
+- React Router DOM
 
-## React Compiler
+## Prerequisites
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Node.js 18+
+- Backend API running on `http://localhost:3000`
 
-## Expanding the ESLint configuration
+## Setup
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+npm install
+npm run dev
+```
+
+The app runs on: `http://localhost:5173`
+
+## Environment Assumptions
+
+- Backend API base URL: `http://localhost:3000/api/v1`
+- Authentication token stored in `localStorage`
+- CORS enabled on backend for `http://localhost:5173`
+
+## Features
+
+### Authentication
+
+- Login with email and password
+- Token-based auth via `Authorization: Bearer <token>`
+- Protected routes block unauthenticated access
+
+### Claims
+
+- View all claims in a sortable table
+- Export claims as CSV
+
+### CSV Import
+
+- Upload CSV file with claims data
+- Displays import results (processed vs failed rows)
+- Duplicate claim numbers are reported as errors
+
+## Pages
+
+| Route | Description |
+|-------|-------------|
+| `/login` | Login screen |
+| `/claims` | Claims list and CSV export |
+| `/import` | CSV upload and import results |
+
+## Project Structure
+
+```
+src/
+  api/
+    client.js          # Axios client with auth interceptor
+  components/
+    ProtectedRoute.jsx # Auth guard + layout
+  pages/
+    LoginPage.jsx
+    ClaimsPage.jsx
+    ImportPage.jsx
+  App.jsx              # Routing
+  main.jsx             # Entry point
+```
+
+## Out of Scope
+
+The following were intentionally excluded to keep scope aligned with challenge requirements:
+
+- TypeScript
+- Redux / Zustand
+- UI for patient management
+- Server-side pagination
+- Tests
